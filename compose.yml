@@ -1,0 +1,11 @@
+---
+services:
+  frontend:
+    build: "frontend/"
+    ports:
+        - "1001:80"
+
+  backend:
+    build: "backend/"
+    ports:
+        - "1002:80"
