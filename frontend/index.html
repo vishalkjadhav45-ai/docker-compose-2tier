@@ -1,8 +1,23 @@
-# Use official NGINX image
-FROM nginx
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello App</title>
+</head>
+<body>
+  <h1>Response from Server:</h1>
+  <p id="output">Loading...</p>
 
-# Copy the static files (index.html) into the NGINX container
-COPY . /usr/share/nginx/html
-
-# Expose port 80 (default for NGINX)
-EXPOSE 80
+  <script>
+    fetch('http://localhost:3000/')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('output').innerText = data.message;
+      })
+      .catch(error => {
+        console.error(error);
+        document.getElementById('output').innerText = 'Error fetching data';
+      });
+  </script>
+</body>
+</html>
+~           
